@@ -1,0 +1,144 @@
+/* Basic reset for better compatibility across browsers */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+/* Navigation styling for page information */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f1f1f1;
+  padding: 10px 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styling */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+/* Control panel styling */
+.control-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+/* Container for the PDF document */
+.pdf-container {
+  width: 800px; /* Fixed width for the container */
+  height: 600px; /* Fixed height for the container */
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+/* Scrollable container for the PDF */
+.scrollable-container {
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 100%;
+  cursor: grab;
+}
+
+.scrollable-container:active {
+  cursor: grabbing;
+}
+
+/* Page styling */
+.page-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.page {
+  min-width: 800px; /* Ensure each page fits the container's width */
+  flex-shrink: 0;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .pdf-container {
+    height: 500px;
+  }
+
+  .page {
+    min-width: 100%; /* Make each page fill the container on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .pdf-container {
+    height: 400px;
+  }
+
+  .control-panel {
+    flex-direction: column;
+  }
+
+  button {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  nav {
+    font-size: 14px;
+  }
+
+  button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .pdf-container {
+    height: 300px;
+  }
+}
