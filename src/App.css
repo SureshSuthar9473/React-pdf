@@ -25,6 +25,19 @@ nav {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Link styling */
+a {
+  color: #007bff;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
 /* Button styling */
 button {
   background-color: #007bff;

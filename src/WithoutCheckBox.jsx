@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
+import { Link } from 'react-router-dom'; // Import Link for routing
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './App.css';
+
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
   import.meta.url,
@@ -42,7 +44,7 @@ const WithoutCheckBox = () => {
       top: containerRef.current.scrollTop,
     };
 
-    document.body.style.userSelect = 'none'; // Disable text selection during dragging
+    document.body.style.userSelect = 'none';
   };
 
   const handleMouseMove = (e) => {
@@ -58,12 +60,12 @@ const WithoutCheckBox = () => {
 
   const handleMouseUp = () => {
     isDragging.current = false;
-    document.body.style.userSelect = 'auto'; // Enable text selection after dragging
+    document.body.style.userSelect = 'auto';
   };
 
   const handleMouseLeave = () => {
     isDragging.current = false;
-    document.body.style.userSelect = 'auto'; // Enable text selection on mouse leave
+    document.body.style.userSelect = 'auto';
   };
 
   useEffect(() => {
@@ -85,14 +87,13 @@ const WithoutCheckBox = () => {
         container.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, []); // No need for selectEnabled dependency anymore
+  }, []);
 
   return (
     <div>
       <nav>
-        <p>
-          Page {pageNumber} of {numPages}
-        </p>
+        <p>Page {pageNumber} of {numPages}</p>
+        <Link to="/">Go to With Checkbox</Link> {/* Link to App page */}
       </nav>
 
       <div>
@@ -103,11 +104,11 @@ const WithoutCheckBox = () => {
 
       <div
         style={{
-          width: '800px', // Fixed width for the container
-          height: '600px', // Fixed height for the container
-          overflow: 'hidden', // Hide any overflow from the container
-          border: '1px solid #ccc', // Optional styling for the container
-          position: 'relative', // Relative positioning for absolute children
+          width: '800px',
+          height: '600px',
+          overflow: 'hidden',
+          border: '1px solid #ccc',
+          position: 'relative',
         }}
       >
         <div
@@ -115,7 +116,7 @@ const WithoutCheckBox = () => {
           style={{
             overflowY: 'scroll',
             overflowX: 'scroll',
-            height: '100%', // Fill the height of the parent
+            height: '100%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'nowrap',
@@ -130,7 +131,7 @@ const WithoutCheckBox = () => {
               <div
                 key={`page_${index + 1}`}
                 style={{
-                  minWidth: '800px', // Ensure each page fits the container's width
+                  minWidth: '800px',
                   flexShrink: 0,
                 }}
               >

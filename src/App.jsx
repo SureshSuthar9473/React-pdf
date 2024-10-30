@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
+import { Link } from 'react-router-dom'; // Import Link for routing
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './App.css';
+
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
   import.meta.url,
@@ -36,7 +38,7 @@ const App = () => {
   };
 
   const handleMouseDown = (e) => {
-    if (selectEnabled) return; // Prevent dragging if text selection is enabled
+    if (selectEnabled) return;
 
     isDragging.current = true;
     start.current = { x: e.pageX, y: e.pageY };
@@ -49,7 +51,7 @@ const App = () => {
   };
 
   const handleMouseMove = (e) => {
-    if (selectEnabled || !isDragging.current) return; // Stop dragging if text selection is enabled
+    if (selectEnabled || !isDragging.current) return;
 
     e.preventDefault();
     const x = e.pageX - start.current.x;
@@ -88,14 +90,13 @@ const App = () => {
         container.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, [selectEnabled]); // Re-attach events based on selection state
+  }, [selectEnabled]);
 
   return (
     <div>
       <nav>
-        <p>
-          Page {pageNumber} of {numPages}
-        </p>
+        <p>Page {pageNumber} of {numPages}</p>
+        <Link to="/without-select">Go to Without Checkbox</Link> {/* Link to WithoutCheckBox page */}
       </nav>
 
       <div>
@@ -117,11 +118,11 @@ const App = () => {
 
       <div
         style={{
-          width: '800px', // Fixed width for the container
-          height: '600px', // Fixed height for the container
-          overflow: 'hidden', // Hide any overflow from the container
-          border: '1px solid #ccc', // Optional styling for the container
-          position: 'relative', // Relative positioning for absolute children
+          width: '800px',
+          height: '600px',
+          overflow: 'hidden',
+          border: '1px solid #ccc',
+          position: 'relative',
         }}
       >
         <div
@@ -129,7 +130,7 @@ const App = () => {
           style={{
             overflowY: 'scroll',
             overflowX: 'scroll',
-            height: '100%', // Fill the height of the parent
+            height: '100%',
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'nowrap',
@@ -144,7 +145,7 @@ const App = () => {
               <div
                 key={`page_${index + 1}`}
                 style={{
-                  minWidth: '800px', // Ensure each page fits the container's width
+                  minWidth: '800px',
                   flexShrink: 0,
                 }}
               >
